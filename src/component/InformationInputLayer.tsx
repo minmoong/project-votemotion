@@ -43,7 +43,7 @@ const InputUnfocusedUnderline = styled.hr`
 `;
 
 const Input = styled.input`
-  width: 256px;
+  width: 240px;
   outline: none;
   border: none;
   font-size: 16px;
@@ -72,24 +72,32 @@ const Placeholder = styled.div`
 type Props = {
   type: string;
   placeholder: string;
-  name: string;
+  inputState: string;
+  setInputState: (inputState: string) => void;
   iconComponent: () => JSX.Element;
 };
 
 function InformationInputLayer(props: Props) {
+  const inputRef = React.useRef<HTMLInputElement>(null);
   const [isFocus, setIsFocus] = React.useState<boolean>(false);
 
   return (
-    <Container>
+    <Container onClick={ () => {
+      if(inputRef.current instanceof HTMLInputElement) {
+        inputRef.current.focus();
+      }
+    } }>
       <Icon>
         { props.iconComponent() }
       </Icon>
       <label>
         <Input
+          ref={ inputRef }
+          spellCheck="false"
           type={ props.type }
-          name={ props.name }
+          onChange={ (e) => { props.setInputState(e.target.value); } }
           onFocus={ () => { setIsFocus(true); } }
-          onBlur={ () => { setIsFocus(false); } }
+          onBlur={ (e) => { if(e.target.value === "") setIsFocus(false); } }
         />
         <Placeholder isFocus={ isFocus }>
           { props.placeholder }

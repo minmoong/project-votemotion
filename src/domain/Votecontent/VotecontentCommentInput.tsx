@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import VotecontentCommentUploadbutton from "./VotecontentCommentUploadbutton";
+import is_login_store from "../../module/store/is_login_store";
 
 const Container = styled.div`
   display: flex;
@@ -42,7 +43,7 @@ const Input = styled.input.attrs(() => ({
   type: "text",
   name: "VotecontentCommentCreateContent",
   autoComplete: "off",
-  placeholder: "댓글을 입력하세요"
+  placeholder: "멋진 댓글을 남겨봐요!😏"
 }))`
   width: 100%;
   outline: none;
@@ -64,10 +65,21 @@ const Input = styled.input.attrs(() => ({
 
 function VotecontentCommentInput() {
   const [isActive, setIsActive] = React.useState<boolean>(false);
+  const [isLogin, setIsLogin] = React.useState<boolean>(is_login_store.getState());
+
+  React.useEffect(() => {
+    let unsubscribe = is_login_store.subscribe(() => {
+      setIsLogin(is_login_store.getState());
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   return (
     <Container>
-      <Wrap >
+      <Wrap>
         <Input onChange={ (event) => {
           if(event.target.value === "") setIsActive(false);
           else if(event.target.value !== "") setIsActive(true);
@@ -75,7 +87,9 @@ function VotecontentCommentInput() {
         <InputUnderline />
         <InputUnfocusedUnderline />
       </Wrap>
-      <VotecontentCommentUploadbutton isActive={ isActive } setIsActive={ setIsActive } />
+      {
+        isLogin ? <VotecontentCommentUploadbutton isActive={ isActive } setIsActive={ setIsActive } /> : <></>
+      }
     </Container>
   );
 }

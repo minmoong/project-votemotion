@@ -37,8 +37,7 @@ function Home({ vote_object }: Props) {
 					vote_object.map((value: any, index: any) => (
 						<VotecontentSuggestion
 							key={ index }
-							to={ value.path }
-							title={ value.title }
+							vote_object={ value }
 						/>
 					))
 				}

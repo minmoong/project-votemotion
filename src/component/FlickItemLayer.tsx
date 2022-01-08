@@ -7,11 +7,12 @@ const Container = styled.div`
     transition: transform 0.3s;
 `;
 
-function FlickItemLayer(props: { elementItem: JSX.Element }) {
+function FlickItemLayer(props: { elementItem: JSX.Element; onClick?: () => void }) {
     const [isPressing, setIsPressing] = React.useState<boolean>(false);
 
     return (
         <Container
+            onClick={ props.onClick }
             onMouseDown={ () => { setIsPressing(true); } }
             onMouseUp={ () => { setIsPressing(false); } }
             onTouchStart={ () => { setIsPressing(true); } }

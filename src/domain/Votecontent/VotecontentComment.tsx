@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import created_at from "../../module/function/created_at";
 import user_common_profile from "../../icon/user_common_profile.png";
 
 const Comment = styled.div`
@@ -24,6 +25,15 @@ const Username = styled.div`
   position: relative;
   top: -3px;
   font-weight: bold;
+  display: flex;
+`;
+
+const CommentStatus = styled.div`
+  position: relative;
+  top: 3px;
+  margin-left: 5px;
+  color: #aaa;
+  font-size: 13px;
 `;
 
 const Content = styled.div`
@@ -38,29 +48,32 @@ const Content = styled.div`
 `;
 
 type Props = {
-  commentUsername: string;
-  commentUserProfileImageSource: string;
-  commentContent: string;
+  uploader: string;
+  comment: string;
+  created_at: number;
 };
 
-class VotecontentComment extends React.Component<Props, {}> {
-  render() {
-    return (
-      <Comment>
-        <div>
-          <Profile />
-        </div>
-        <CommentInfoWrap>
-          <Username>
-            { this.props.commentUsername }
-          </Username>
-          <Content>
-            { this.props.commentContent }
-          </Content>
-        </CommentInfoWrap>
-      </Comment>
-    );
-  }
+function VotecontentComment(props: Props) {
+  return (
+    <Comment>
+      <div>
+        <Profile />
+      </div>
+      <CommentInfoWrap>
+        <Username>
+          <div>
+            { props.uploader }
+          </div>
+          <CommentStatus>
+            { created_at(props.created_at) }
+          </CommentStatus>
+        </Username>
+        <Content>
+          { props.comment }
+        </Content>
+      </CommentInfoWrap>
+    </Comment>
+  );
 }
 
 export default VotecontentComment;

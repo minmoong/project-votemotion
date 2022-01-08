@@ -4,11 +4,22 @@ import VotecontentContent from "./VotecontentContent";
 import VotecontentComment from "./VotecontentComment";
 import VotecontentCreateComment from "./VotecontentCreateComment";
 import VotecontentCommentGuide from "./VotecontentCommentGuide";
-import vote_comment_store from "../../module/store/vote_comment_store";
+import created_at from "../../module/function/created_at";
 
 const Title = styled.div`
 	font-size: 30px;
-  margin-bottom: 20px;
+`;
+
+const VoteInfo = styled.div`
+	margin-bottom: 15px;
+	display: flex;
+	color: #aaa;
+`;
+
+const Dot = styled.div`
+	position: relative;
+	top: -1px;
+	margin: 0 4px;
 `;
 
 const DivisionLine = styled.hr`
@@ -24,46 +35,27 @@ type Props = {
 	vote_object: VoteObject;
 };
 
-type State = {
-	vote_comment: string[];
-};
-
-class Votecontent extends React.Component<Props, State> {
-	public unsubscribe: any;
-
-	state = {
-		vote_comment: []
-	}
-
-	componentDidMount() {
-		this.unsubscribe = vote_comment_store.subscribe(async () => {
-			this.setState({ vote_comment: (await vote_comment_store.getState()) });
-		});
-
-		vote_comment_store.dispatch({ type: "REFRESH", pathname: window.location.pathname });
-	}
-
-	componentWillUnmount() {
-		this.unsubscribe();
-
-		vote_comment_store.dispatch({ type: "CLEAR", pathname: window.location.pathname });
-	}
-
+class Votecontent extends React.Component<Props, {}> {
 	render() {
 		return (
 			<>
 				<Title>{ this.props.vote_object.title }</Title>
+				<VoteInfo>
+					<div>{ this.props.vote_object.uploader }</div>
+					<Dot>•</Dot>
+					<div>{ created_at(+this.props.vote_object.created_at) }</div>
+				</VoteInfo>
 				<VotecontentContent vote_object={ this.props.vote_object } />
 				<DivisionLine />
 				<VotecontentCommentGuide />
 				<VotecontentCreateComment />
 				{
-					this.state.vote_comment.map((comment, key) => (
+					this.props.vote_object.comment.map((comment: any, key) => (
 						<VotecontentComment
 							key={ key }
-							commentUsername="unknown"
-							commentUserProfileImageSource="../../icon/user_common_profile.png"
-							commentContent={ comment }
+							uploader={ JSON.parse(comment).uploader }
+							comment={ JSON.parse(comment).comment }
+							created_at={ JSON.parse(comment).created_at }
 						/>
 					))
 				}

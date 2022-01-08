@@ -1,7 +1,15 @@
-declare interface VoteObject {
+declare type VoteObject = {
   path: string;
   title: string;
-  content: string[];
-  content_totalVotes: number;
-  content_votes: number[];
+  created_at: string;
+  uploader: string;
+  votecontent: string[];
+  comment: string[];
+  votecontent_total_votes: number;
+  votecontent_each_votes: number[];
+}
+
+declare type User = {
+  nickname?: string;
+  voted_at?: { path: string; votedIdx: number; }[];
 }

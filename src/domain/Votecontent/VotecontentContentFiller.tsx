@@ -8,6 +8,8 @@ const ProgressbarContainer = styled.span`
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
+
+	${ ({ isChecked }: { isChecked: boolean }) => (isChecked ? "border: 2px solid #0d6efd;" : "") }
 `;
 
 const VotecontentContentContainer = styled.div`
@@ -28,17 +30,6 @@ const Turnout = styled.span`
 	transform: translateY(-50%);
 `;
 
-const Radio = styled.input.attrs(() => ({
-	type: "radio",
-	name: "VotecontentRadio"
-}))`
-	display: none;
-
-	&:checked + ${ VotecontentContentContainer } > ${ ProgressbarContainer } {
-		border: 2px solid #0d6efd;
-	}
-`;
-
 const ProgressbarLayer = styled.div`
 	position: absolute;
 	top: 0;
@@ -50,22 +41,20 @@ const ProgressbarLayer = styled.div`
 `;
 
 type Props = {
-  contentTitle: string;
+  title: string;
   turnout: number;
+	isChecked: boolean;
 }
 
 function Filler(props: Props) {
   return (
-		<label>
-			<Radio />
-			<VotecontentContentContainer>
-				<span>{ props.contentTitle }</span>
-				<Turnout>{ props.turnout + "%" }</Turnout>
-				<ProgressbarContainer>
-					<ProgressbarLayer turnout={ props.turnout } />
-				</ProgressbarContainer>
-			</VotecontentContentContainer>
-		</label>
+		<VotecontentContentContainer>
+			<span>{ props.title }</span>
+			<Turnout>{ Math.floor(props.turnout) + "%" }</Turnout>
+			<ProgressbarContainer isChecked={ props.isChecked }>
+				<ProgressbarLayer turnout={ props.turnout } />
+			</ProgressbarContainer>
+		</VotecontentContentContainer>
   );
 }
 
