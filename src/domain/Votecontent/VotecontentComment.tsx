@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import created_at from "../../module/function/created_at";
 import user_common_profile from "../../icon/user_common_profile.png";

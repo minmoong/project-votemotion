@@ -1,7 +1,7 @@
 declare type VoteObject = {
   path: string;
   title: string;
-  created_at: string;
+  created_at: number;
   uploader: string;
   votecontent: string[];
   comment: string[];

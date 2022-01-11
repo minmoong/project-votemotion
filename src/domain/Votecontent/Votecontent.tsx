@@ -5,6 +5,7 @@ import VotecontentComment from "./VotecontentComment";
 import VotecontentCreateComment from "./VotecontentCreateComment";
 import VotecontentCommentGuide from "./VotecontentCommentGuide";
 import created_at from "../../module/function/created_at";
+import comment_store from "../../module/store/comment_store";
 
 const Title = styled.div`
 	font-size: 30px;
@@ -35,7 +36,30 @@ type Props = {
 	vote_object: VoteObject;
 };
 
-class Votecontent extends React.Component<Props, {}> {
+type State = {
+	comments: any;
+};
+
+class Votecontent extends React.Component<Props, State> {
+	public unsub: any;
+
+	state = {
+		comments: []
+	}
+
+	componentDidMount() {
+		this.unsub = comment_store.subscribe(async () => {
+			this.setState({ comments: await comment_store.getState() });
+		});
+
+		comment_store.dispatch({ type: "REFRESH", path: window.location.pathname });
+	}
+
+	componentWillUnmount() {
+		this.unsub();
+		comment_store.dispatch({ type: "CLEAR" });
+	}
+
 	render() {
 		return (
 			<>
@@ -43,19 +67,19 @@ class Votecontent extends React.Component<Props, {}> {
 				<VoteInfo>
 					<div>{ this.props.vote_object.uploader }</div>
 					<Dot>•</Dot>
-					<div>{ created_at(+this.props.vote_object.created_at) }</div>
+					<div>{ created_at(this.props.vote_object.created_at) }</div>
 				</VoteInfo>
 				<VotecontentContent vote_object={ this.props.vote_object } />
 				<DivisionLine />
 				<VotecontentCommentGuide />
 				<VotecontentCreateComment />
 				{
-					this.props.vote_object.comment.map((comment: any, key) => (
+					this.state.comments.map((comment: any, key) => (
 						<VotecontentComment
 							key={ key }
-							uploader={ JSON.parse(comment).uploader }
-							comment={ JSON.parse(comment).comment }
-							created_at={ JSON.parse(comment).created_at }
+							uploader={ comment.uploader }
+							comment={ comment.comment }
+							created_at={ comment.created_at }
 						/>
 					))
 				}

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import FlickItemLayer from "../../component/FlickItemLayer";
 import votecontent_comment_upload from "../../module/function/votecontent_comment_upload";
 import SendIcon from "../../icon/SendIcon";
-import vote_object_store from "../../module/store/vote_object_store";
+import comment_store from "../../module/store/comment_store";
 
 const Container = styled.div`
   width: fit-content;
@@ -39,8 +39,8 @@ function VotecontentCommentUploadbutton(props: Props) {
   return (
     <Container onClick={ props.isActive ? async () => {
       await votecontent_comment_upload(window.location.pathname);
+      comment_store.dispatch({ type: "REFRESH", path: window.location.pathname });
       props.setIsActive(false);
-      vote_object_store.dispatch({ type: "REFRESH" });
     } : () => {} }>
       <FlickItemLayer
         elementItem={

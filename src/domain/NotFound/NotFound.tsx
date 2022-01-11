@@ -11,7 +11,7 @@ function NotFound() {
   return (
     <div>
       <div>
-        존재하지 않는 페이지에요!
+        존재하지 않는 곳이에요!
       </div>
       <Link to="/">
         <Goback>

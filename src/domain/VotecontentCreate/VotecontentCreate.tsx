@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import VotecontentCreateVotecontentContentTitle from "./VotecontentCreateVotecontentContentTitle";
 import VotecontentCreateVotecontentContentContainer from "./VotecontentCreateVotecontentContentContainer";
+import UploadStatus from "./UploadStatus";
 import VotecontentCreateUploadbutton from "./VotecontentCreateUploadbutton";
 import count_list_store from "../../module/store/votecontentContent_count_list_store";
 
@@ -18,6 +19,7 @@ function VotecontentCreate() {
   return (
     <Container>
       <VotecontentCreateUploadbutton />
+      <UploadStatus />
       <VotecontentCreateVotecontentContentTitle />
       <VotecontentCreateVotecontentContentContainer />
     </Container>

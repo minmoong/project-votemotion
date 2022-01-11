@@ -6,7 +6,6 @@ import VotecontentContentFiller from "./VotecontentContentFiller";
 import ComponentWithNavigation from "../../component/ComponentWithNavigation";
 import turnout_list_store from "../../module/store/turnout_list_store";
 import is_login_store from "../../module/store/is_login_store";
-import vote_object_store from "../../module/store/vote_object_store";
 import user_store from "../../module/store/user_store";
 import get_user from "../../module/function/get_user";
 
@@ -74,22 +73,24 @@ class VotecontentContent extends React.Component<Props, State> {
 		(async () => {
 			let res = await get_user();
 
-			user_store.dispatch(
-				{
-					type: "SET",
-					user: {
-						nickname: res.nickname,
-						voted_at: res.voted_at === "" ? [] : JSON.parse(res.voted_at)
+			if(res.loggedIn === true) {
+				user_store.dispatch(
+					{
+						type: "SET",
+						user: {
+							nickname: res.user.nickname,
+							voted_at: res.user.voted_at === "" ? [] : JSON.parse(res.user.voted_at)
+						}
 					}
+				);
+			
+				let votedData = this.state.user.voted_at?.filter(data => data.path === window.location.pathname);
+				if(votedData?.length === 1) {
+					let checkedlist = this.state.isCheckedList;
+					checkedlist[votedData[0].votedIdx] = true;
+					this.setState({ isCheckedList: checkedlist });
 				}
-			);
-		
-			let votedData = this.state.user.voted_at?.filter(data => data.path === window.location.pathname);
-			if(votedData?.length === 1) {
-				let asdf = this.state.isCheckedList;
-				asdf[votedData[0].votedIdx] = true;
-				this.setState({ isCheckedList: asdf });
-			}
+			} else user_store.dispatch({ type: "SET", user: {} });
 		})();
 	}
 
@@ -101,7 +102,6 @@ class VotecontentContent extends React.Component<Props, State> {
 
 	afterVoting() {
 		turnout_list_store.dispatch({ type: "REFRESH", path: window.location.pathname });
-		vote_object_store.dispatch({ type: "REFRESH" });
 		(async () => {
 			let res = await get_user();
 
@@ -109,8 +109,8 @@ class VotecontentContent extends React.Component<Props, State> {
 				{
 					type: "SET",
 					user: {
-						nickname: res.nickname,
-						voted_at: res.voted_at === "" ? [] : JSON.parse(res.voted_at)
+						nickname: res.user.nickname,
+						voted_at: res.user.voted_at === "" ? [] : JSON.parse(res.user.voted_at)
 					}
 				}
 			);
@@ -126,58 +126,57 @@ class VotecontentContent extends React.Component<Props, State> {
 							key={ idx }
 							onClick={ () => {
 								if(this.state.isLogin === true) {
-									(() => {
-										let list: boolean[] = this.state.isCheckedList;
-										let type: string;
-										let pathname = window.location.pathname;
-										
-										if(list[idx] === true) type = "DECREMENT";
-										else if(!list.includes(true)) type = "INCREMENT";
-										else type = "CHANGEMENT";
-		
-										switch(type) {
-											case "INCREMENT":
-												list.fill(false);
-												list[idx] = true;
-		
-												axios.post("/api/voting", {
-													type: "INCREMENT",
-													pathname: pathname,
-													nickname: user_store.getState().nickname,
-													voteAtIdx: idx
-												}).then(res => this.afterVoting());
-												break;
-												
-											case "CHANGEMENT":
-												let changementDecreaseAtIdx;
-												list.forEach((val, idx) => { if(list[idx] === true) changementDecreaseAtIdx = idx; });
-												list.fill(false);
-												list[idx] = true;
-		
-												axios.post("/api/voting", {
-													type: "CHANGEMENT",
-													pathname: pathname,
-													nickname: user_store.getState().nickname,
-													voteAtIdx: idx,
-													decreaseAtIdx: changementDecreaseAtIdx
-												}).then(res => this.afterVoting());
-												break;
-		
-											case "DECREMENT":
-												let decrementDecreaseAtIdx;
-												list.forEach((val, idx) => { if(list[idx] === true) decrementDecreaseAtIdx = idx; });
-												list.fill(false);
-		
-												axios.post("/api/voting", {
-													type: "DECREMENT",
-													pathname: pathname,
-													nickname: user_store.getState().nickname,
-													decreaseAtIdx: decrementDecreaseAtIdx
-												}).then(res => this.afterVoting());
-												break;
-										}
-									})();
+									let list: boolean[] = this.state.isCheckedList;
+									let type: string;
+									let pathname = window.location.pathname;
+									
+									if(list[idx] === true) type = "DECREMENT";
+									else if(!list.includes(true)) type = "INCREMENT";
+									else type = "CHANGEMENT";
+	
+									switch(type) {
+										case "INCREMENT":
+											list.fill(false);
+											list[idx] = true;
+	
+											axios.post("/api/voting", {
+												type: "INCREMENT",
+												pathname: pathname,
+												nickname: user_store.getState().nickname,
+												voteAtIdx: idx
+											}).then(res => this.afterVoting());
+											break;
+											
+										case "CHANGEMENT":
+											let changementDecreaseAtIdx;
+											list.forEach((val, idx) => { if(list[idx] === true) changementDecreaseAtIdx = idx; });
+											list.fill(false);
+											list[idx] = true;
+	
+											axios.post("/api/voting", {
+												type: "CHANGEMENT",
+												pathname: pathname,
+												nickname: user_store.getState().nickname,
+												voteAtIdx: idx,
+												decreaseAtIdx: changementDecreaseAtIdx
+											}).then(res => this.afterVoting());
+											break;
+	
+										case "DECREMENT":
+											let decrementDecreaseAtIdx;
+											list.forEach((val, idx) => { if(list[idx] === true) decrementDecreaseAtIdx = idx; });
+											list.fill(false);
+	
+											axios.post("/api/voting", {
+												type: "DECREMENT",
+												pathname: pathname,
+												nickname: user_store.getState().nickname,
+												decreaseAtIdx: decrementDecreaseAtIdx
+											}).then(res => this.afterVoting());
+											break;
+									}
 								} else if(this.state.isLogin === false) this.props.navigation("/login?message_id=NPTDV&redirect=" + window.location.pathname.slice(1));
+
 							} }
 							elementItem={
 								<VotecontentContentFiller

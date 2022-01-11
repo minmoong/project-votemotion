@@ -1,10 +1,13 @@
 import { createStore } from "redux";
-import get_vote_object from "../function/get_vote_object";
 
-export default createStore((vote_object: any, action) => {
+export default createStore((vote_object: any = [], action: { type: string; vote_object?: any }) => {
   switch(action.type) {
+    case "SET":
+      vote_object = action.vote_object;
+      return vote_object;
+
     case "REFRESH":
-      vote_object = get_vote_object();
+      vote_object = [];
       return vote_object;
     
     default:

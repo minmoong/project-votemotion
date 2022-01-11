@@ -6,10 +6,6 @@ export default createStore((user: User = {}, action: { type: string; user: User;
       user = action.user;
       return user;
 
-    case "LOGOUT":
-      user = {};
-      return user;
-
     default:
       return user;
   }
