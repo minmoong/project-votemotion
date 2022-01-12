@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import InformationInputLayer from "../../component/InformationInputLayer";
 import PulseItemLayer from "../../component/PulseItemLayer";
-import BadgeIcon from "../../icon/BadgeIcon";
-import PasswordIcon from "../../icon/PasswordIcon";
+import { ReactComponent as BadgeIcon } from "../../icons/BadgeIcon.svg";
+import { ReactComponent as PasswordIcon } from "../../icons/PasswordIcon.svg";
 
 const Container = styled.div`
   position: relative;

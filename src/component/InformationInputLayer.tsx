@@ -74,7 +74,7 @@ type Props = {
   placeholder: string;
   inputState: string;
   setInputState: (inputState: string) => void;
-  iconComponent: () => JSX.Element;
+  iconComponent: any;
 };
 
 function InformationInputLayer(props: Props) {
@@ -88,7 +88,7 @@ function InformationInputLayer(props: Props) {
       }
     } }>
       <Icon>
-        { props.iconComponent() }
+        <props.iconComponent />
       </Icon>
       <label>
         <Input

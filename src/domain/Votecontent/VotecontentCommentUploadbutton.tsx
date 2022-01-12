@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import FlickItemLayer from "../../component/FlickItemLayer";
 import votecontent_comment_upload from "../../module/function/votecontent_comment_upload";
-import SendIcon from "../../icon/SendIcon";
+import SendIcon from "../../icons/SendIcon";
 import comment_store from "../../module/store/comment_store";
 
 const Container = styled.div`

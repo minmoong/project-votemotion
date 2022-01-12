@@ -2,7 +2,7 @@ import styled from "styled-components";
 import FlickItemLayer from "../../component/FlickItemLayer";
 import ComponentWithNavigation from "../../component/ComponentWithNavigation";
 import created_at from "../../module/function/created_at";
-import check_box_icon from "../../icon/check_box.svg";
+import CheckboxIcon from "../../icons/CheckboxIcon.svg";
 
 const Container = styled.div`
 	transition: filter 0.5s;
@@ -36,12 +36,14 @@ type Props = {
 }
 
 function VotecontentSuggestion(props: Props) {
+	let title = props.vote_object.title.length > 15 ? props.vote_object.title.substring(0, 16) + "..." : props.vote_object.title;
+
 	return (
 		<FlickItemLayer
 			elementItem={
 				<Container onClick={ () => { props.navigation(props.vote_object.path); } }>
 					<Wrap>
-						<Title>{ props.vote_object.title }</Title>
+						<Title>{ title }</Title>
 						<VoteInfo>
 							<div style={ { display: "flex" } }>
 								<div>{ props.vote_object.uploader }</div>
@@ -50,7 +52,7 @@ function VotecontentSuggestion(props: Props) {
 							</div>
 							<div style={ { marginTop: "5px" } }>
 								<span>
-									<span><img src={ check_box_icon } alt="투표된 개수" /></span>
+									<span><img src={ CheckboxIcon } alt="투표된 개수" /></span>
 									<span style={ { position: "relative", top: "-6px", marginLeft: "3px", color: "#0d6efd" } }>
 										{ props.vote_object.votecontent_total_votes }
 									</span>

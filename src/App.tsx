@@ -6,7 +6,6 @@ import Home from "./domain/Home/Home";
 import VotecontentCreate from "./domain/VotecontentCreate/VotecontentCreate";
 import Login from "./domain/Login/Login";
 import Register from "./domain/Register/Register";
-import Developer from "./domain/Developer/Developer";
 import Information from "./domain/Information/Information";
 import OutsideRoute from "./domain/OutsideRoute/OutsideRoute";
 import DomainNotFound from "./domain/DomainNotFound/DomainNotFound";
@@ -89,7 +88,6 @@ class App extends React.Component<{}, State> {
             <Route path="/register" element={ <Register /> } />
           </>
         }
-        <Route path="/developer" element={ <Developer /> } />
         <Route path="/information" element={ <Information /> } />
         <Route path="/:path" element={ <OutsideRoute /> } />
       </Routes>

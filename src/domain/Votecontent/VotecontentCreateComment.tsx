@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import user_common_profile from "../../icon/user_common_profile.png";
+import user_common_profile from "../../icons/user_common_profile.png";
 import VotecontentCommentInput from "./VotecontentCommentInput";
 import is_login_store from "../../module/store/is_login_store";
 import ComponentWithNavigation from "../../component/ComponentWithNavigation";

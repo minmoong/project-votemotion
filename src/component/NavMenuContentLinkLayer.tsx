@@ -20,7 +20,7 @@ const LinkName = styled.div`
 
 type Props = {
   name: string;
-  iconComponent: () => JSX.Element;
+  iconComponent: any;
 }
 
 function NavMenuContentLinkLayer(props: Props) {
@@ -28,7 +28,7 @@ function NavMenuContentLinkLayer(props: Props) {
     <>
       <Container>
         <LinkIcon>
-          { props.iconComponent() }
+          <props.iconComponent />
         </LinkIcon>
         <LinkName>
           { props.name }

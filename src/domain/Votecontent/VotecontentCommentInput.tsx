@@ -82,6 +82,7 @@ function VotecontentCommentInput() {
       <Wrap>
         <Input onChange={ (event) => {
           if(event.target.value === "") setIsActive(false);
+          else if(event.target.value.length > 1000) setIsActive(false);
           else if(event.target.value !== "") setIsActive(true);
         } } />
         <InputUnderline />

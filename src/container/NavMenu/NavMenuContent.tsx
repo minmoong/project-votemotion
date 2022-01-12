@@ -2,17 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import axios from "axios";
 import NavMenuContentLinkLayer from "../../component/NavMenuContentLinkLayer";
-import LoginIcon from "../../icon/LoginIcon";
-import RegisterIcon from "../../icon/RegisterIcon";
-import InfoIcon from "../../icon/InfoIcon";
-import LogoutIcon from "../../icon/LogoutIcon";
-import AddVoteIcon from "../../icon/AddVoteIcon";
+import { ReactComponent as LoginIcon } from "../../icons/LoginIcon.svg";
+import { ReactComponent as RegisterIcon } from "../../icons/RegisterIcon.svg";
+import { ReactComponent as InfoIcon } from "../../icons/InfoIcon.svg";
+import { ReactComponent as LogoutIcon } from "../../icons/LogoutIcon.svg";
+import { ReactComponent as AddVoteIcon } from "../../icons/AddVoteIcon.svg";
 import nav_menu_isopen_store from "../../module/store/nav_menu_isopen_store";
 import PulseItemLayer from "../../component/PulseItemLayer";
 import is_login_store from "../../module/store/is_login_store";
 import user_store from "../../module/store/user_store";
 import ComponentWithNavigation from "../../component/ComponentWithNavigation";
-import user_common_profile from "../../icon/user_common_profile.png";
+import user_common_profile from "../../icons/user_common_profile.png";
 
 const Profile = styled.div`
   margin-bottom: 10px;
