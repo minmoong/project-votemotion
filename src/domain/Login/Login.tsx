@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import QueryString from "qs";
 import InformationInputLayer from "../../component/InformationInputLayer";
-import axios from "axios";
+import PrevButton from "../../component/PrevButton";
 import { ReactComponent as BadgeIcon } from "../../icons/BadgeIcon.svg";
 import { ReactComponent as PasswordIcon } from "../../icons/PasswordIcon.svg";
 import PulseItemLayer from "../../component/PulseItemLayer";
@@ -16,6 +17,12 @@ const Container = styled.div`
   height: 100%;
   margin-left: auto;
   margin-right: auto;
+`;
+
+const Wrap = styled.div`
+  position: relative;
+  top: 0;
+  left: 0;
 `;
 
 const TitleLogo = styled.div`
@@ -109,46 +116,51 @@ function Login() {
   }
 
   return (
-    <Container>
-      <LoginForm>
-        <TitleLogo><h3>{ message }</h3></TitleLogo>
-        <InputForm>
-          <InformationInputLayer
-            type="text"
-            placeholder="닉네임"
-            inputState={ nicknameReg }
-            setInputState={ setNicknameReg }
-            iconComponent={ BadgeIcon }
-          />
-          <InformationInputLayer
-            type="password"
-            placeholder="비밀번호"
-            inputState={ passwordReg }
-            setInputState={ setPasswordReg }
-            iconComponent={ PasswordIcon }
-          />
-        </InputForm>
-        <LoginStatus>
-          { loginStatus }
-        </LoginStatus>
-        <ButtonForm>
-          <div onClick={ () => { navigation("/register"); } } style={ { marginRight: "10px" } }>
-            <PulseItemLayer
-              elementItem={
-                <Button>회원가입</Button>
-              }
+    <>
+      <Wrap>
+        <PrevButton />
+      </Wrap>
+      <Container>
+        <LoginForm>
+          <TitleLogo><h3>{ message }</h3></TitleLogo>
+          <InputForm>
+            <InformationInputLayer
+              type="text"
+              placeholder="닉네임"
+              inputState={ nicknameReg }
+              setInputState={ setNicknameReg }
+              iconComponent={ BadgeIcon }
             />
-          </div>
-          <div onClick={ doLogin }>
-            <PulseItemLayer
-              elementItem={
-                <Button>로그인</Button>
-              }
+            <InformationInputLayer
+              type="password"
+              placeholder="비밀번호"
+              inputState={ passwordReg }
+              setInputState={ setPasswordReg }
+              iconComponent={ PasswordIcon }
             />
-          </div>
-        </ButtonForm>
-      </LoginForm>
-    </Container>
+          </InputForm>
+          <LoginStatus>
+            { loginStatus }
+          </LoginStatus>
+          <ButtonForm>
+            <div onClick={ () => { navigation("/register"); } } style={ { marginRight: "10px" } }>
+              <PulseItemLayer
+                elementItem={
+                  <Button>회원가입</Button>
+                }
+              />
+            </div>
+            <div onClick={ doLogin }>
+              <PulseItemLayer
+                elementItem={
+                  <Button>로그인</Button>
+                }
+              />
+            </div>
+          </ButtonForm>
+        </LoginForm>
+      </Container>
+    </>
   );
 }
 

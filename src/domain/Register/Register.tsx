@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import InformationInputLayer from "../../component/InformationInputLayer";
+import PrevButton from "../../component/PrevButton";
 import PulseItemLayer from "../../component/PulseItemLayer";
 import { ReactComponent as BadgeIcon } from "../../icons/BadgeIcon.svg";
 import { ReactComponent as PasswordIcon } from "../../icons/PasswordIcon.svg";
@@ -13,6 +14,12 @@ const Container = styled.div`
   height: 100%;
   margin-left: auto;
   margin-right: auto;
+`;
+
+const Wrap = styled.div`
+  position: relative;
+  top: 0;
+  left: 0;
 `;
 
 const TitleLogo = styled.div`
@@ -86,37 +93,42 @@ function Register() {
   }
 
   return (
-    <Container>
-      <RegisterForm>
-        <TitleLogo><h3>계정을 추가해보세요!</h3></TitleLogo>
-        <InputForm>
-          <InformationInputLayer
-            type="text"
-            placeholder="닉네임(필수입력)"
-            inputState={ nicknameReg }
-            setInputState={ setNicknameReg }
-            iconComponent={ BadgeIcon }
-          />
-          <InformationInputLayer
-            type="password"
-            placeholder="비밀번호(필수입력)"
-            inputState={ passwordReg }
-            setInputState={ setPasswordReg }
-            iconComponent={ PasswordIcon }
-          />
-        </InputForm>
-        <RegisterStatus>
-          { registerStatus }
-        </RegisterStatus>
-        <Submit onClick={ doRegister }>
-          <PulseItemLayer
-            elementItem={
-              <SubmitButton>회원가입</SubmitButton>
-            }
-          />
-        </Submit>
-      </RegisterForm>
-    </Container>
+    <>
+      <Wrap>
+        <PrevButton />
+      </Wrap>
+      <Container>
+        <RegisterForm>
+          <TitleLogo><h3>계정을 추가해보세요!</h3></TitleLogo>
+          <InputForm>
+            <InformationInputLayer
+              type="text"
+              placeholder="닉네임(필수입력)"
+              inputState={ nicknameReg }
+              setInputState={ setNicknameReg }
+              iconComponent={ BadgeIcon }
+            />
+            <InformationInputLayer
+              type="password"
+              placeholder="비밀번호(필수입력)"
+              inputState={ passwordReg }
+              setInputState={ setPasswordReg }
+              iconComponent={ PasswordIcon }
+            />
+          </InputForm>
+          <RegisterStatus>
+            { registerStatus }
+          </RegisterStatus>
+          <Submit onClick={ doRegister }>
+            <PulseItemLayer
+              elementItem={
+                <SubmitButton>회원가입</SubmitButton>
+              }
+            />
+          </Submit>
+        </RegisterForm>
+      </Container>
+    </>
   );
 }
 

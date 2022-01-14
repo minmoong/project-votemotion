@@ -4,7 +4,6 @@ import upload_status_store from "../../module/store/upload_status_store";
 
 const Container = styled.div`
   text-align: center;
-  margin-bottom: 10px;
   color: red;
 `;
 

@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -28,7 +27,6 @@ const Wrap = styled.div`
 `;
 
 function VotecontentCreateUploadbutton() {
-  const [status, setStatus] = React.useState<string>("");
   const navigate = useNavigate();
 
   return (

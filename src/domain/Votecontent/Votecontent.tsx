@@ -6,10 +6,21 @@ import VotecontentComment from "./VotecontentComment";
 import VotecontentCreateComment from "./VotecontentCreateComment";
 import VotecontentCommentGuide from "./VotecontentCommentGuide";
 import Vert from '../../component/Vert';
+import PrevButton from '../../component/PrevButton';
 import created_at from "../../module/function/created_at";
 import comment_store from "../../module/store/comment_store";
 import user_store from "../../module/store/user_store";
 import { ReactComponent as DeleteIcon } from "../../icons/DeleteIcon.svg";
+
+const Wrap = styled.div`
+	position: relative;
+	top: 0;
+	left: 0;
+`
+
+const Container = styled.div`
+	margin-top: 40px;
+`
 
 const Title = styled.div`
 	position: relative;
@@ -84,47 +95,52 @@ class Votecontent extends React.Component<Props, State> {
 	render() {
 		return (
 			<>
-				<Title>
-					<div style={{ position: "absolute", bottom: "0px", right: "0px", fontSize: "16px" }}>
-						{
-							this.props.vote_object.uploader === user_store.getState().nickname &&
-							<Vert>
-								<Dropdown onClick={() => {
-									axios({
-										method: "POST",
-										url: "/api/data/delete-votecontent",
-										data: {
-											path: window.location.pathname
-										}
-									}).then(res => window.location.href = "/");
-								}}>
-									<DeleteIcon style={{ height: "15px", width: "15px" }} />
-									삭제
-								</Dropdown>
-							</Vert>
-						}
-					</div>
-					{ this.props.vote_object.title }
-				</Title>
-				<VoteInfo>
-					<div>{ this.props.vote_object.uploader }</div>
-					<Dot>•</Dot>
-					<div>{ created_at(this.props.vote_object.created_at) }</div>
-				</VoteInfo>
-				<VotecontentContent vote_object={ this.props.vote_object } />
-				<DivisionLine />
-				<VotecontentCommentGuide />
-				<VotecontentCreateComment />
-				{
-					this.state.comments.map((comment: any, key) => (
-						<VotecontentComment
-							key={ key }
-							uploader={ comment.uploader }
-							comment={ comment.comment }
-							created_at={ comment.created_at }
-						/>
-					))
-				}
+				<Wrap>
+					<PrevButton />
+				</Wrap>
+				<Container>
+					<Title>
+						<div style={{ position: "absolute", bottom: "0px", right: "0px", fontSize: "16px" }}>
+							{
+								this.props.vote_object.uploader === user_store.getState().nickname &&
+								<Vert>
+									<Dropdown onClick={() => {
+										axios({
+											method: "POST",
+											url: "/api/data/delete-votecontent",
+											data: {
+												path: window.location.pathname
+											}
+										}).then(res => window.location.href = "/");
+									}}>
+										<DeleteIcon style={{ height: "15px", width: "15px" }} />
+										삭제
+									</Dropdown>
+								</Vert>
+							}
+						</div>
+						{ this.props.vote_object.title }
+					</Title>
+					<VoteInfo>
+						<div>{ this.props.vote_object.uploader }</div>
+						<Dot>•</Dot>
+						<div>{ created_at(this.props.vote_object.created_at) }</div>
+					</VoteInfo>
+					<VotecontentContent vote_object={ this.props.vote_object } />
+					<DivisionLine />
+					<VotecontentCommentGuide />
+					<VotecontentCreateComment />
+					{
+						this.state.comments.map((comment: any, key) => (
+							<VotecontentComment
+								key={ key }
+								uploader={ comment.uploader }
+								comment={ comment.comment }
+								created_at={ comment.created_at }
+							/>
+						))
+					}
+				</Container>
 			</>
 		);
 	}
