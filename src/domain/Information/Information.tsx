@@ -2,6 +2,7 @@ import styled from "styled-components";
 import PrevButton from "../../component/PrevButton";
 import FlickItemLayer from "../../component/FlickItemLayer";
 import MyProfile from "../../icons/user_common_profile.png";
+import WinterProfile from "../../icons/WinterProfile.png";
 import { ReactComponent as CodeIcon } from "../../icons/CodeIcon.svg";
 import { ReactComponent as FacebookIcon } from "../../icons/FacebookIcon.svg";
 import { ReactComponent as YoutubeIcon } from "../../icons/YoutubeIcon.svg";
@@ -200,10 +201,10 @@ function Information() {
               {/* <ProfileBg /> */}
               <FlickItemLayer
                 elementItem={
-                    <img src={ MyProfile } alt="개발자 민뭉 프로필" style={{
+                    <img src={ WinterProfile } alt="개발자 윈터 프로필" style={{
                       width: "170px",
                       height: "170px",
-                      border: "2px solid #0d6efd",
+                      border: "2px solid #79735d",
                       borderRadius: "50%"
                     }} />
                 }
@@ -211,25 +212,8 @@ function Information() {
             </ProfileWrap>
             <Name>윈 터</Name>
             <Desc>
-              예술은 비싸고 인생을 더럽다
+              Hey world, Good Night.
             </Desc>
-            <Contacts>
-              <FlickItemLayer
-                elementItem={
-                  <a href="" target="_blank" rel="noreferrer"><FacebookIcon /></a>
-                }
-              />
-              <FlickItemLayer
-                elementItem={
-                  <a href="" target="_blank" rel="noreferrer"><YoutubeIcon /></a>
-                }
-              />
-              <FlickItemLayer
-                elementItem={
-                  <a href="" target="_blank" rel="noreferrer"><GithubIcon /></a>
-                }
-              />
-            </Contacts>
           </Profile>
         </div>
         <div>

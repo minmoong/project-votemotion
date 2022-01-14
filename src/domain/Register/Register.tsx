@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import InformationInputLayer from "../../component/InformationInputLayer";
 import PrevButton from "../../component/PrevButton";
-import PulseItemLayer from "../../component/PulseItemLayer";
+import FlickItemLayer from "../../component/FlickItemLayer";
 import { ReactComponent as BadgeIcon } from "../../icons/BadgeIcon.svg";
 import { ReactComponent as PasswordIcon } from "../../icons/PasswordIcon.svg";
 
@@ -64,8 +64,8 @@ const SubmitButton = styled.div`
   width: 100px;
   height: 35px;
   border-radius: 35px;
-  border: 1px solid #0d6efd;
-  color: #0d6efd;
+  background: #0d6efd;
+  color: #fff;
   line-height: 35px;
   text-align: center;
   font-weight: bold;
@@ -120,7 +120,7 @@ function Register() {
             { registerStatus }
           </RegisterStatus>
           <Submit onClick={ doRegister }>
-            <PulseItemLayer
+            <FlickItemLayer
               elementItem={
                 <SubmitButton>회원가입</SubmitButton>
               }

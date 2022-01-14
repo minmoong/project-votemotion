@@ -4,7 +4,7 @@ const Circle = styled.div`
   width: 45px;
   height: 45px;
   border-radius: 27%;
-  border: 1px solid #0d6efd;
+  border: 2px solid #0d6efd;
 `;
 
 const StyledBugger = styled.div`

@@ -15,7 +15,7 @@ const Rect = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 27%;
-  border: 1px solid #0d6efd;
+  border: 2px solid #0d6efd;
 `
 
 const Button = styled.div`

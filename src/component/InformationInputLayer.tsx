@@ -94,6 +94,7 @@ function InformationInputLayer(props: Props) {
         <Input
           ref={ inputRef }
           spellCheck="false"
+          autoComplete="off"
           type={ props.type }
           onChange={ (e) => { props.setInputState(e.target.value); } }
           onFocus={ () => { setIsFocus(true); } }

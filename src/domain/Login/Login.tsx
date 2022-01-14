@@ -7,7 +7,7 @@ import InformationInputLayer from "../../component/InformationInputLayer";
 import PrevButton from "../../component/PrevButton";
 import { ReactComponent as BadgeIcon } from "../../icons/BadgeIcon.svg";
 import { ReactComponent as PasswordIcon } from "../../icons/PasswordIcon.svg";
-import PulseItemLayer from "../../component/PulseItemLayer";
+import FlickItemLayer from "../../component/FlickItemLayer";
 import is_login_store from "../../module/store/is_login_store";
 import user_store from "../../module/store/user_store";
 
@@ -68,8 +68,8 @@ const Button = styled.div`
   width: 100px;
   height: 35px;
   border-radius: 35px;
-  border: 1px solid #0d6efd;
-  color: #0d6efd;
+  background: #0d6efd;
+  color: #fff;
   line-height: 35px;
   text-align: center;
   font-weight: bold;
@@ -144,14 +144,14 @@ function Login() {
           </LoginStatus>
           <ButtonForm>
             <div onClick={ () => { navigation("/register"); } } style={ { marginRight: "10px" } }>
-              <PulseItemLayer
+              <FlickItemLayer
                 elementItem={
                   <Button>회원가입</Button>
                 }
               />
             </div>
             <div onClick={ doLogin }>
-              <PulseItemLayer
+              <FlickItemLayer
                 elementItem={
                   <Button>로그인</Button>
                 }

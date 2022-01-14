@@ -20,7 +20,7 @@ const Wrap = styled.div`
   cursor: pointer;
   width: 40px;
   height: 40px;
-  border: 1px solid #0d6efd;
+  border: 2px solid #0d6efd;
   border-radius: 10px;
   box-sizing: border-box;
   color: #fff;
