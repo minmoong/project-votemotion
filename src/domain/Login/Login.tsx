@@ -10,6 +10,7 @@ import { ReactComponent as PasswordIcon } from "../../icons/PasswordIcon.svg";
 import FlickItemLayer from "../../component/FlickItemLayer";
 import is_login_store from "../../module/store/is_login_store";
 import user_store from "../../module/store/user_store";
+import change_title from "../../module/function/change_title";
 
 const Container = styled.div`
   position: relative;
@@ -77,6 +78,10 @@ const Button = styled.div`
 `;
 
 function Login() {
+  React.useEffect(() => {
+    change_title("로그인")
+  }, [])
+
   const location = useLocation();
   const messages = {
     DEFAULT: "로그인 플리즈..!",

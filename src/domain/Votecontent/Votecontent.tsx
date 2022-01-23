@@ -4,12 +4,12 @@ import axios from "axios";
 import VotecontentContent from "./VotecontentContent";
 import VotecontentComment from "./VotecontentComment";
 import VotecontentCreateComment from "./VotecontentCreateComment";
-import VotecontentCommentGuide from "./VotecontentCommentGuide";
 import Vert from '../../component/Vert';
 import PrevButton from '../../component/PrevButton';
 import created_at from "../../module/function/created_at";
 import comment_store from "../../module/store/comment_store";
 import user_store from "../../module/store/user_store";
+import change_title from "../../module/function/change_title";
 import { ReactComponent as DeleteIcon } from "../../icons/DeleteIcon.svg";
 
 const Wrap = styled.div`
@@ -79,12 +79,31 @@ class Votecontent extends React.Component<Props, State> {
 		comments: []
 	}
 
+	addAd() {
+		let ins = document.createElement('ins');
+		let scr = document.createElement('script');
+
+		ins.className = 'kakao_ad_area';
+		ins.setAttribute('style', 'display:none; width:100%;');
+		scr.async = true;
+		scr.type = 'text/javascript';
+		scr.src = '//t1.daumcdn.net/kas/static/ba.min.js';
+		ins.setAttribute('data-ad-width', '320');
+		ins.setAttribute('data-ad-height', '100');
+		ins.setAttribute('data-ad-unit', 'DAN-omncjw2j18ROJoQB');
+
+		(document.querySelector('.adfit') as HTMLDivElement).appendChild(ins);
+		(document.querySelector('.adfit') as HTMLDivElement).appendChild(scr);
+	}
+
 	componentDidMount() {
 		this.unsub = comment_store.subscribe(async () => {
 			this.setState({ comments: await comment_store.getState() });
 		});
-
 		comment_store.dispatch({ type: "REFRESH", path: window.location.pathname });
+		change_title(this.props.vote_object.title);
+
+		this.addAd();
 	}
 
 	componentWillUnmount() {
@@ -128,7 +147,7 @@ class Votecontent extends React.Component<Props, State> {
 					</VoteInfo>
 					<VotecontentContent vote_object={ this.props.vote_object } />
 					<DivisionLine />
-					<VotecontentCommentGuide />
+					<div className="adfit" style={{ width: "320px", margin: "0 auto", marginBottom: "35px" }} />
 					<VotecontentCreateComment />
 					{
 						this.state.comments.map((comment: any, key) => (

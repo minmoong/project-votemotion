@@ -11,7 +11,7 @@ const Container = styled.div`
   width: fit-content;
   height: fit-content;
   margin-left: auto;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   cursor: pointer;
 `;
 

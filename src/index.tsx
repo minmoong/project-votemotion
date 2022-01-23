@@ -5,7 +5,8 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://34.83.249.158:8080";
+// GCP: axios.defaults.baseURL = "http://34.83.249.158:8080";
+axios.defaults.baseURL = "https://api.votemotion.kr";
 axios.defaults.withCredentials = true;
 
 ReactDOM.render(
@@ -14,7 +15,7 @@ ReactDOM.render(
       <App />
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

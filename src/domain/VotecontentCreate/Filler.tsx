@@ -7,7 +7,7 @@ const Container = styled.div`
 const Wrap = styled.div`
   display: flex;
   height: 50px;
-  background: #dbdbdb;
+  background: rgba(0, 0, 0, 0.05);
   border-radius: 15px;
   align-items: center;
   padding: 20px;

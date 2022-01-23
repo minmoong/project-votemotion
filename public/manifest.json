@@ -3,13 +3,116 @@
   "name": "Votemotion",
   "icons": [
     {
-      "src": "../src/icon/user_common_profile.png",
+      "src": "icons/favicon.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/favicon192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/favicon512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/AddVoteIcon.svg",
+      "sizes": "24x24",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/BadgeIcon.svg",
+      "sizes": "24x24",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/CheckboxIcon.svg",
+      "sizes": "24x24",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/CodeIcon.svg",
+      "sizes": "50x50",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/DeleteIcon.svg",
+      "sizes": "15x15",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/FacebookIcon.svg",
       "sizes": "40x40",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/GithubIcon.svg",
+      "sizes": "40x40",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/HomeIcon.svg",
+      "sizes": "25x25",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/InfoIcon.svg",
+      "sizes": "24x24 50x50",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/LoginIcon.svg",
+      "sizes": "24x24",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/LogoutIcon.svg",
+      "sizes": "24x24",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/NoteIcon.svg",
+      "sizes": "50x50",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/PasswordIcon.svg",
+      "sizes": "24x24",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/RegisterIcon.svg",
+      "sizes": "24x24",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/UploadIcon.svg",
+      "sizes": "20x20",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/VertdotsIcon.svg",
+      "sizes": "24x24",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/YoutubeIcon.svg",
+      "sizes": "40x40",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/user_common_profile.png",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/WinterProfile.png",
       "type": "image/png"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#0d6efd"
+  "theme_color": "#0d6efd",
+  "background_color": "#ffffff"
 }

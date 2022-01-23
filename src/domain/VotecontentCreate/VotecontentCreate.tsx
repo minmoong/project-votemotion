@@ -6,6 +6,7 @@ import PrevButton from "../../component/PrevButton";
 import UploadStatus from "./UploadStatus";
 import VotecontentCreateUploadbutton from "./VotecontentCreateUploadbutton";
 import count_list_store from "../../module/store/votecontentContent_count_list_store";
+import change_title from "../../module/function/change_title";
 
 const Container = styled.div`
   position: relative;
@@ -16,6 +17,7 @@ const Container = styled.div`
 function VotecontentCreate() {
   React.useEffect(() => {
     count_list_store.dispatch({ type: "COUNT_LIST_CLEAR" });
+    change_title("투표 업로드");
   }, []);
 
   return (

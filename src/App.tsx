@@ -84,6 +84,7 @@ class App extends React.Component<{}, State> {
           </>
           :
           <>
+            <Route path="/createVotecontent" element={ <DomainNotFound /> } />
             <Route path="/login" element={ <Login /> } />
             <Route path="/register" element={ <Register /> } />
           </>

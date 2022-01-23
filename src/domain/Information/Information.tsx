@@ -1,7 +1,9 @@
+import React from 'react';
 import styled from "styled-components";
 import PrevButton from "../../component/PrevButton";
 import FlickItemLayer from "../../component/FlickItemLayer";
-import MyProfile from "../../icons/user_common_profile.png";
+import change_title from '../../module/function/change_title';
+import MinmoongProfile from "../../icons/MinmoongProfile.png";
 import WinterProfile from "../../icons/WinterProfile.png";
 import { ReactComponent as CodeIcon } from "../../icons/CodeIcon.svg";
 import { ReactComponent as FacebookIcon } from "../../icons/FacebookIcon.svg";
@@ -30,9 +32,10 @@ const Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 100px;
   margin-bottom: 20px;
-  
+  margin-left: 10px;
+
   @media (max-width: 1000px) {
     flex-direction: column;
   }
@@ -58,7 +61,7 @@ const Profile = styled.div`
 //   transform: translate(-50%, -50%);
 //   width: calc(100vw - 50px);
 //   height: 100px;
-//   background: #0d6efd;
+//   background: #abcded;
 // `
 
 const ProfileWrap = styled.div`
@@ -73,7 +76,7 @@ const Line = styled.hr`
   height: 1px;
   background: #cccccc;
   border: none;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 `
 const Name = styled.div`
   font-weight: bold;
@@ -102,8 +105,9 @@ const NoteTitle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 100px;
   margin-bottom: 20px;
+  margin-left: 10px;
 
   @media (max-width: 1000px) {
     flex-direction: column;
@@ -139,13 +143,26 @@ const ConTitle = styled.div`
   justify-content: center;
   margin-top: 100px;
   margin-bottom: 20px;
+  margin-left: 10px;
 
   @media (max-width: 1000px) {
     flex-direction: column;
   }
 `;
 
+const ConName = styled.div`
+  font-size: 25px;
+  color: #0d6efd;
+  text-align: center;
+  font-weight: bold;
+  margin-right: 10px;
+`;
+
 function Information() {
+  React.useEffect(() => {
+    change_title("앱 정보");
+  }, []);
+
   return (
     <>
       <Wrap>
@@ -165,7 +182,7 @@ function Information() {
               {/* <ProfileBg /> */}
               <FlickItemLayer
                 elementItem={
-                    <img src={ MyProfile } alt="개발자 민뭉 프로필" style={{
+                    <img src={ MinmoongProfile } alt="개발자 민뭉 프로필" style={{
                       width: "170px",
                       height: "170px",
                       border: "2px solid #0d6efd",
@@ -176,7 +193,7 @@ function Information() {
             </ProfileWrap>
             <Name>민 뭉</Name>
             <Desc>
-              에러가 쓰러지지 않아!!
+            ❥H워얼V
             </Desc>
             <Contacts>
               <FlickItemLayer
@@ -204,7 +221,7 @@ function Information() {
                     <img src={ WinterProfile } alt="개발자 윈터 프로필" style={{
                       width: "170px",
                       height: "170px",
-                      border: "2px solid #79735d",
+                      border: "2px solid #0d6efd",
                       borderRadius: "50%"
                     }} />
                 }
@@ -217,13 +234,25 @@ function Information() {
           </Profile>
         </div>
         <div>
+          <ConTitle>
+            <InfoIcon style={{ width: "50px", height: "50px", marginRight: "10px" }} />
+            <ConName>콘택트</ConName>
+          </ConTitle>
+          <Line />
+          <ConDesc>
+            언제든 연락줘요!
+            <br />
+            민뭉: 010-8553-2379
+          </ConDesc>
+        </div>
+        {/* <div>
           <NoteTitle>
             <NoteIcon style={{ width: "50px", height: "50px", marginRight: "10px" }} />
             <NoteName>개발 노트 & 일기</NoteName>
           </NoteTitle>
           <Line />
           <NoteDesc>
-            <ContentTitle>개발자의 꿈을 가진 두 16살 학생(올해로)이 시작한 작은 프로젝트</ContentTitle>
+            <ContentTitle>개발자의 꿈을 가진 두 16살 학생이 시작한 작은 프로젝트</ContentTitle>
             <br />
             처음엔 여행 계획을 자동으로 짜주는 프로그램(project-hetrip, 2021/11/03 ~ 2021/11/13)을 개발하려 했지만 미흡한 계획과 실패적인 성과의 연속으로 개발 아이템을 피버팅하여 투표 관련 시스템을 만들기로 했다.(지금 생각해보면 이 프로그램은 도움이 안 될 것 같다.)
             <br />
@@ -236,7 +265,7 @@ function Information() {
             <br />
             코딩을 하면서 여러가지 문제점이 있었겠지만 단연 가장 큰 문제는 내 컴퓨터였다!
             <br />
-            사양이 CPU: Intel Pentium G3240, RAM: 4GB(크롬브라우저가 10초만에 켜진다.) 인 내 컴퓨터는 꼭 하루에 한 번 씩은 혼자 모니터가 나가버린다던가 몇십초동안 응답없음 상태로 벙쪄있는다.
+            사양이 CPU: Intel Pentium G3240, RAM: 4GB(크롬브라우저가 10초만에 켜진다.) 인 내 컴퓨터는 꼭 하루에 한 번 씩은 혼자 모니터가 나가버린다던가 몇십 초 동안 응답없음 상태로 벙쪄있는다.
             <br />
             비록 컴퓨터는 이랬지만 프로젝트를 할 때 컴퓨터의 한계를 노력으로 극복하려고 노력 한 것 같다.
             <br />
@@ -246,19 +275,7 @@ function Information() {
             <br />
             그중 가장 많이 들은 노래는 &lt;에어맨이 쓰러지지 않아&gt; 이다..!
           </NoteDesc>
-        </div>
-        <div>
-          <ConTitle>
-            <InfoIcon style={{ width: "50px", height: "50px", marginRight: "10px" }} />
-            <NoteName>콘택트</NoteName>
-          </ConTitle>
-          <Line />
-          <ConDesc>
-            연락하기(친해지고 싶다면 언제든!): 010-8553-2379
-            <br />
-            후원하기: (개인) 카카오뱅크 김민규 7777-02-1395223
-          </ConDesc>
-        </div>
+        </div> */}
       </Container>
     </>
   );

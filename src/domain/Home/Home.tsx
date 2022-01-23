@@ -4,6 +4,7 @@ import styled from "styled-components";
 import VotecontentSuggestion from "./VotecontentSuggestion";
 import NavMenu from "../../container/NavMenu/NavMenu";
 import Loader from "../../component/Loader";
+import change_title from "../../module/function/change_title";
 import vote_object_store from "../../module/store/vote_object_store";
 
 const TargetElement = styled.div`
@@ -41,6 +42,10 @@ function Home() {
   const [target, setTarget] = React.useState(null);
   const [isLoaded, setIsLoaded] = React.useState(false);
 	const [isEnded, setIsEnded] = React.useState(false);
+
+	React.useEffect(() => {
+		change_title("홈");
+	}, []);
 
 	React.useEffect(() => {
 		let observer: any;

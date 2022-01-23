@@ -7,6 +7,7 @@ import PrevButton from "../../component/PrevButton";
 import FlickItemLayer from "../../component/FlickItemLayer";
 import { ReactComponent as BadgeIcon } from "../../icons/BadgeIcon.svg";
 import { ReactComponent as PasswordIcon } from "../../icons/PasswordIcon.svg";
+import change_title from "../../module/function/change_title";
 
 const Container = styled.div`
   position: relative;
@@ -73,6 +74,10 @@ const SubmitButton = styled.div`
 `;
 
 function Register() {
+  React.useEffect(() => {
+    change_title("회원가입")
+  }, [])
+
   const navigation = useNavigate();
   const [nicknameReg, setNicknameReg] = React.useState("");
   const [passwordReg, setPasswordReg] = React.useState("");
@@ -81,6 +86,7 @@ function Register() {
 
   function doRegister() {
     if(nicknameReg === "" || passwordReg === "") setRegisterStatus("뭐라도 입력해줘요!😥");
+    else if(nicknameReg.length > 15) setRegisterStatus("닉네임은 15자 까지에요!😅");
     else {
       axios.post("/api/register", {
         nickname: nicknameReg,

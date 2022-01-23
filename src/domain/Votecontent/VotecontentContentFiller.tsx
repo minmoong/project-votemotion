@@ -15,7 +15,7 @@ const ProgressbarContainer = styled.span`
 const VotecontentContentContainer = styled.div`
 	position: relative;
 	height: 50px;
-	background: #dbdbdb;
+	background: rgba(0, 0, 0, 0.05);
 	border-radius: 15px;
 	display: flex;
 	align-items: center;
@@ -36,7 +36,7 @@ const ProgressbarLayer = styled.div`
 	left: 0;
 	height: 100%;
 	width: ${ ({ turnout }: { turnout: number }) => (turnout) }%;
-	background: rgba(30, 144, 255, 0.35);
+	background: rgba(50, 115, 246, 0.3);
 	border-radius: 15px;
 `;
 

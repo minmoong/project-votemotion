@@ -3,16 +3,29 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta name="description" content="Votemotion - 의견 투표 커뮤니티!" />
     <meta name="google" content="notranslate">
+    <link href="icons/favicon.png" rel="shortcut icon" type="image/x-icon">
 
     <!-- CODELAB: Add link rel manifest -->
     <link rel="manifest" href="manifest.json" />
 
+    <!-- CODELAB: Add iOS meta tags and icons -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#0d6efd">
+    <meta name="apple-mobile-web-app-title" content="Votemotion">
+    <link rel="apple-touch-icon" href="icons/favicon.png">
+
     <!-- CODELAB: Add meta theme-color -->
     <meta name="theme-color" content="#0d6efd" />
 
-    <title>Votemotion</title>
+    <!-- CODELAB: Add description here -->
+    <meta name="description" content="Votemotion - 의견 투표 커뮤니티!" />
+
+    <meta name="title" property="og:title" content="Votemotion" />
+    <meta name="description" property="og:description" content="의견 투표 커뮤니티!"/>
+    <meta name="url" property="og:url" content="votemotion.kr" />
+
+    <title></title>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
 
@@ -40,6 +53,16 @@
         background: #fff;
       }
     </style>
+    <script>
+      if("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./service-worker.js")
+            .then((reg) => {
+              console.log("Service worker registered.", reg);
+            });
+        });
+      }
+    </script>
   </head>
   <body>
     <noscript>JavaScript 가 실행되는 브라우저에서 접속해 주세요.</noscript>
