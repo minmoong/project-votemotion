@@ -79,7 +79,7 @@ class Votecontent extends React.Component<Props, State> {
 		comments: []
 	}
 
-	addAd() {
+	addAdOne() {
 		let ins = document.createElement('ins');
 		let scr = document.createElement('script');
 
@@ -92,8 +92,25 @@ class Votecontent extends React.Component<Props, State> {
 		ins.setAttribute('data-ad-height', '100');
 		ins.setAttribute('data-ad-unit', 'DAN-omncjw2j18ROJoQB');
 
-		(document.querySelector('.adfit') as HTMLDivElement).appendChild(ins);
-		(document.querySelector('.adfit') as HTMLDivElement).appendChild(scr);
+		(document.querySelector('.adfit1') as HTMLDivElement).appendChild(ins);
+		(document.querySelector('.adfit1') as HTMLDivElement).appendChild(scr);
+	}
+
+	addAdTwo() {
+		let ins = document.createElement('ins');
+		let scr = document.createElement('script');
+
+		ins.className = 'kakao_ad_area';
+		ins.setAttribute('style', 'display:none; width:100%;');
+		scr.async = true;
+		scr.type = 'text/javascript';
+		scr.src = '//t1.daumcdn.net/kas/static/ba.min.js';
+		ins.setAttribute('data-ad-width', '300');
+		ins.setAttribute('data-ad-height', '250');
+		ins.setAttribute('data-ad-unit', 'DAN-A8KaICXqeMbyE667');
+
+		(document.querySelector('.adfit2') as HTMLDivElement).appendChild(ins);
+		(document.querySelector('.adfit2') as HTMLDivElement).appendChild(scr);
 	}
 
 	componentDidMount() {
@@ -103,7 +120,8 @@ class Votecontent extends React.Component<Props, State> {
 		comment_store.dispatch({ type: "REFRESH", path: window.location.pathname });
 		change_title(this.props.vote_object.title);
 
-		this.addAd();
+		this.addAdOne();
+		this.addAdTwo();
 	}
 
 	componentWillUnmount() {
@@ -147,7 +165,8 @@ class Votecontent extends React.Component<Props, State> {
 					</VoteInfo>
 					<VotecontentContent vote_object={ this.props.vote_object } />
 					<DivisionLine />
-					<div className="adfit" style={{ width: "320px", margin: "0 auto", marginBottom: "35px" }} />
+					<div className="adfit1" style={{ width: "320px", margin: "0 auto" }} />
+					<div className="adfit2" style={{ width: "320px", margin: "0 auto", marginBottom: "35px" }} />
 					<VotecontentCreateComment />
 					{
 						this.state.comments.map((comment: any, key) => (
