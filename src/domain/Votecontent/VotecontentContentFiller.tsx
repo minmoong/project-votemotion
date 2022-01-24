@@ -47,10 +47,15 @@ type Props = {
 }
 
 function Filler(props: Props) {
+	let turnout;
+	let b = props.turnout.toFixed(1);
+	if(b.split('.')[1] === '0') turnout = Math.floor(+b);
+	else turnout = b;
+
   return (
 		<VotecontentContentContainer>
 			<span>{ props.title }</span>
-			<Turnout>{ Math.floor(props.turnout) + "%" }</Turnout>
+			<Turnout>{ turnout + "%" }</Turnout>
 			<ProgressbarContainer isChecked={ props.isChecked }>
 				<ProgressbarLayer turnout={ props.turnout } />
 			</ProgressbarContainer>
