@@ -6,5 +6,7 @@
 
 ![test2](https://user-images.githubusercontent.com/62737839/151752027-7ed4d709-c9a9-4411-ada2-1b5325aba150.PNG)
 
+![iPhone X on book](https://user-images.githubusercontent.com/62737839/152302227-1ab6ff69-9895-4f2f-8c92-636d4e19ae1a.jpg)
+
 ### 서비스 이용방법
 > [votemotion.kr](https://votemotion.kr) 에 배포되어 있습니다!
