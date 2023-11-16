@@ -7,4 +7,4 @@
 ![test1](https://user-images.githubusercontent.com/62737839/151751919-124a979c-158c-4499-8b00-a404b6d85532.PNG)
 
 ### 서비스 이용방법
-> [votemotion.kr](https://votemotion.kr) 에 배포되어 있습니다!
+> [votemotion.kr](https://votemotion.kr) 에 배포되어 있습니다! **(현재는 서비스가 종료되었습니다.)**
